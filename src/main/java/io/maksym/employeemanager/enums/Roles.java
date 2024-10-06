@@ -1,0 +1,12 @@
+package io.maksym.employeemanager.enums;
+
+public enum Roles {
+    IT_TECHNICIAN,
+    SUPPORT_SPECIALIST,
+    WEB_DEVELOPER,
+    SYSTEM_ANALYST,
+    SOFTWARE_ENGINEER,
+    DATABASE_ADMINISTRATOR,
+    IT_DIRECTOR,
+    USER_EXPERIENCE_DESIGNER
+}
