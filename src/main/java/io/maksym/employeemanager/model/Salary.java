@@ -1,5 +1,6 @@
 package io.maksym.employeemanager.model;
 
+import io.maksym.employeemanager.exception.LowSalaryException;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,5 +20,11 @@ public class Salary {
     private Employee employee;
     private double amount;
 
-
+    @PrePersist
+    @PreUpdate
+    public void validateSalaryAmount() {
+        if (amount <= 2000){
+            throw new LowSalaryException("Salary can not be lower than 2000");
+        }
+    }
 }
