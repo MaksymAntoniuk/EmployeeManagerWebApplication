@@ -22,12 +22,20 @@ public class SalaryServiceImpl implements SalaryService{
     @Override
     public Salary addSalary(long employeeId, double salaryAmount) {
         Employee employee = employeeRepository.findById(employeeId).orElseThrow(
-                ()-> new EmployeeNotFoundException("Employee not found")
+                ()-> new EmployeeNotFoundException("Employee with id " + " not found")
         );
 
         Salary salary = new Salary();
         salary.setAmount(salaryAmount);
         salary.setEmployee(employee);
+        salaryRepository.save(salary);
+        return salaryRepository.save(salary);
+    }
+
+    @Override
+    public Salary updateSalary(Employee employee, double salaryAmount) {
+        Salary salary = salaryRepository.findByEmployee(employee).orElseThrow(() -> new EmployeeNotFoundException("Salary for Employee with id" + employee.getId() + " not found") );
+        salary.setAmount(salaryAmount);
         salaryRepository.save(salary);
         return salaryRepository.save(salary);
     }
