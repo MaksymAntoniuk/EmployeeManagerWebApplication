@@ -1,9 +1,5 @@
 package io.maksym.employeemanager.service;
-
 import io.maksym.employeemanager.model.Employee;
-import io.maksym.employeemanager.repository.EmployeeRepository;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 
@@ -18,6 +14,6 @@ public interface EmployeeService {
 
     void deleteEmployee(long id);
 
-    boolean employeeExistById(long id);
+//    boolean employeeExistById(long id);
 
 }

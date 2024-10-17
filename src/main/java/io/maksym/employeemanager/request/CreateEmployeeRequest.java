@@ -2,9 +2,7 @@ package io.maksym.employeemanager.request;
 
 import io.maksym.employeemanager.enums.Roles;
 import io.maksym.employeemanager.model.Employee;
-import io.maksym.employeemanager.model.Salary;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;

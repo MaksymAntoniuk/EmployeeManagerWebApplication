@@ -3,7 +3,6 @@ package io.maksym.employeemanager.controller;
 import io.maksym.employeemanager.exception.DuplicateEmployeeException;
 import io.maksym.employeemanager.exception.EmployeeNotFoundException;
 import io.maksym.employeemanager.exception.ValidationException;
-import io.maksym.employeemanager.model.Employee;
 import io.maksym.employeemanager.rest.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

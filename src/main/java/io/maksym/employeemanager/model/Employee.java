@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.NaturalId;
 
-import java.nio.file.LinkOption;
 import java.time.LocalDate;
 
 @Entity

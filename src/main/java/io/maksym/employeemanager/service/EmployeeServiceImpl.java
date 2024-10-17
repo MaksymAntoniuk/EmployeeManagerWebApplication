@@ -4,9 +4,7 @@ package io.maksym.employeemanager.service;
 import io.maksym.employeemanager.exception.DuplicateEmployeeException;
 import io.maksym.employeemanager.exception.EmployeeNotFoundException;
 import io.maksym.employeemanager.model.Employee;
-import io.maksym.employeemanager.model.Salary;
 import io.maksym.employeemanager.repository.EmployeeRepository;
-import io.maksym.employeemanager.repository.SalaryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,8 +67,8 @@ public class EmployeeServiceImpl implements EmployeeService{
         employeeRepository.delete(employeeRepository.findById(id).orElseThrow(() ->  new  EmployeeNotFoundException("Employee with id " + id + " not found")));
     }
 
-    @Override
-    public boolean employeeExistById(long id) {
-        return true;
-    }
+//    @Override
+//    public boolean employeeExistById(long id) {
+//        return true;
+//    }
 }

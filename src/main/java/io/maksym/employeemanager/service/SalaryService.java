@@ -2,8 +2,6 @@ package io.maksym.employeemanager.service;
 
 import io.maksym.employeemanager.model.Employee;
 import io.maksym.employeemanager.model.Salary;
-import org.springframework.http.ResponseEntity;
-
 import java.util.List;
 
 public interface SalaryService {
