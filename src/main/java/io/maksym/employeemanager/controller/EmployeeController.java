@@ -96,6 +96,13 @@ public class EmployeeController {
         return ResponseEntity.status(HttpStatus.OK).body(addSalary);
     }
 
+    @PutMapping("/employee/update/salary/{id}")
+    public ResponseEntity<Salary> updateSalary(@PathVariable long id, @RequestParam double amount){
+        Employee employee = employeeService.getEmployeeById(id);
+        Salary updateSalary = salaryService.updateSalary(employee, amount);
+        return ResponseEntity.ok(updateSalary);
+    }
+
 
 
 
