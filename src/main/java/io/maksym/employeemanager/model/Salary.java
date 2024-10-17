@@ -19,12 +19,22 @@ public class Salary {
     @JoinColumn(name = "employee_id", referencedColumnName = "id", nullable = false)
     private Employee employee;
     private double amount;
+    private double netAmount;
 
     @PrePersist
     @PreUpdate
-    public void validateSalaryAmount() {
+    public void validateSalaryAndComputeNet() {
         if (amount <= 2000){
             throw new LowSalaryException("Salary can not be lower than 2000");
         }
+        double annualSalary = amount * 12;
+        if (annualSalary <= 120000){
+            netAmount = amount - (((double) 12 /100) * amount);
+        }
+        if (annualSalary > 120000){
+            netAmount = amount - (((double) 32 /100) * amount);
+        }
+
     }
+
 }
