@@ -1,12 +1,17 @@
 package io.maksym.employeemanager.controller;
 
+import io.maksym.employeemanager.dto.CredentialsDto;
+import io.maksym.employeemanager.dto.SignUpDto;
+import io.maksym.employeemanager.dto.UserDto;
 import io.maksym.employeemanager.exception.ValidationException;
 import io.maksym.employeemanager.model.Employee;
 import io.maksym.employeemanager.model.Salary;
 import io.maksym.employeemanager.request.CreateEmployeeRequest;
 import io.maksym.employeemanager.request.UpdateEmploeeRequest;
+import io.maksym.employeemanager.security.UserAuthProvider;
 import io.maksym.employeemanager.service.EmployeeService;
 import io.maksym.employeemanager.service.SalaryService;
+import io.maksym.employeemanager.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +30,23 @@ import java.util.stream.Collectors;
 public class EmployeeController {
     private final EmployeeService employeeService;
     private final SalaryService salaryService;
+
+    private final UserService userService;
+    private final UserAuthProvider userAuthProvider;
+
+    @PostMapping("/login")
+    public ResponseEntity<UserDto> login(@RequestBody @Valid CredentialsDto credentialsDto){
+        UserDto userDto = userService.login(credentialsDto);
+        userDto.setToken(userAuthProvider.createToken(userDto.getLogin()));
+        return ResponseEntity.ok(userDto);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<UserDto> register(@RequestBody SignUpDto signUpDto){
+        UserDto user = userService.register(signUpDto);
+        user.setToken(userAuthProvider.createToken(user.getLogin()));
+        return ResponseEntity.created(URI.create("/users/" + user.getId())).body(user);
+    }
 
     @GetMapping
     public ResponseEntity<List<Employee>> getAllEmployee(){
